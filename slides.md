@@ -29,24 +29,29 @@ very fast even with thousand of branches
 merging is clear
 forge your commit
 
-### Local use
-
-Global configuration
+### configuration globale
 
 ```
 git config
 ```
 
-Starting a repo
+### Demarrer un repo
 
 ```sh
 git init
 ```
 
+### Ajouter des modifications  a un commit
+
 ```sh
 git add
 ```
 
+* nouveau fichier
+* ancien fichier
+* detection des fichiers deplace
+
+### commit
 
 ```sh
 git commit
@@ -107,9 +112,11 @@ git add
 git commit
 ```
 
-### plus de gens, plus de rigolade, plus de repository !
+# plus de gens, plus de rigolade, plus de repository !
 
-#### ajoutez une remote
+slide
+
+### ajoutez une remote
 ```sh 
 git remote add origin git@gitlab.com:gcmalloc/git-talk.git
 ```
@@ -118,7 +125,7 @@ url: emplacement de la remote
 \pause
 (http ou ssh)
 
-#### prendre l'etat de la remote et le copier localement
+### prendre l'etat de la remote et le copier localement
 
 ```sh 
 git fetch 
@@ -126,7 +133,7 @@ git fetch
 
 * -p pour enlever les branches de la remote n'existant plus
 
-#### merger l'etat d'une branche de la remote et la branche locale
+### merger l'etat d'une branche de la remote et la branche locale
 
 ```sh 
 git merge origin/master
