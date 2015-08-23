@@ -2,74 +2,101 @@
 %Malik Bougacha
 %Marc Schaer
 
-### git ?
+# Introduction
 
-\pause
+### git ?  \pause
 \center
 \includegraphics[width=10cm]{img/logo.png}
 
 ### Qu'est ce que git ?
 
-Suivi de code 
+Système de gestion de code
 
 \pause
 
-* Distribuable
+* Gestion de version
 \pause
 
-* branchable
+* Distribué
 \pause
 
-* versionable
+* Création de branches
 \pause
 
-* rapide
+* Efficace
 
-### petite histoire
+### Son histoire
 
+* TODO : petite recherche rapide sur l'historique des systèmes de gestion de code
 
-### pourquoi git
+### Pourquoi git ?
 
-very easy branching
-very easy collaboration
-very fast even with thousand of branches
-merging is clear
-forge your commit
+* Facile d'utilisation
+\pause
 
-### configuration globale
+* Création de branches simples et rapides
+\pause
+
+* Collaboration facilitée
+\pause
+
+* Efficaces même avec des miliers de branches
+\pause
+
+* Fusion de code facile et claire
+\pause
+
+* Gestion facile des commits (=forge your commit ?)
+
+### Configuration globale
+
+* Travail en local...
+\pause
+
+* ... mais collaboration...
+\pause
+
+* ... signifie identification !
+\pause
 
 ```
 git config
 ```
 
-### Demarrer un repo
+* Nom d'utilisateur
+
+* E-mail
+
+### Démarrer un dépôt
+
+Création d'un dépôt local :
 
 ```sh
 git init
 ```
-### Crafter un commit
+### Modeler un commit
 
-add 
-vs
-reset 
+add vs. reset
 
-### Ajouter des modifications  a un commit
+Ici faut remplir avec qqch (image ?)
+
+### Ajouter des modifications à un commit
 
 ```sh
 git add
 ```
 
-* nouveau fichier
-* ancien fichier
-* detection des fichiers deplace
+* Nouveau fichier
+* Ancien fichier
+* Détection des fichiers déplacés
 
-### Enlever des modifications a un future commit
+### Enlever des modifications d'un futur commit
 
 ```sh
 git reset
 ```
 
-### Regarder ce qui va etre commite
+### Regarder ce qui va etre "commité"
 
 ```sh
 git diff --staged
@@ -87,16 +114,21 @@ git commit -m 'ceci est un message de commit'
 git commit -am 'ceci est un message de commit'
 ```
 
-# more branch !
+# Plus de branches !
 
-### Creez une branch
+### Créez une branche
 
-Creons une nouvelle branche
+Créons une nouvelle branche
 
 ```sh 
-git checkout -b new_feature_for_cats
+git branch new_feature_for_cats
 ```
 
+### Changer de branche
+
+```sh 
+git checkout new_feature_for_cats
+```
 
 ### Commit dans une branche
 
@@ -104,7 +136,7 @@ git checkout -b new_feature_for_cats
 git commit -m 'message de commit dans la branche new_feature_for_cats'
 ```
 
-### Merger la nouvelle branche dans master
+### Fusionner la nouvelle branche dans la branche master
 
 ```sh 
 git checkout master
@@ -118,44 +150,44 @@ git checkout master
 git merge new_feature_for_cats master
 ```
 
-# more conflict !
+# Mais plus de conflits !
 
-### Creer un conflict
+### Créer un conflit
 
 ```sh 
 git checkout new_feature_for_cats
 ```
 
-creation du conflict
+* Création du conflit
 
-### diagnostique du conflict
+### Diagnostique du conflit
 
 ```sh 
 git status
 ```
 
-### resolution des conflicts
+### Résolution des conflits
 
 ```sh 
 git add
 git commit
 ```
 
-# plus de gens, plus de repo
+# Plus de personnes, plus de collaboration !
 
 
-### ajoutez une remote
+### Ajouter une branche remote
 
 ```sh 
 git remote add origin  \
 git@gitlab.com:gcmalloc/git-talk.git
 ```
-origin: nom de la remote 
-url: emplacement de la remote
+* origin: nom de la remote 
+* url: emplacement de la remote
 \pause
 (http ou ssh)
 
-### prendre l'etat de la remote et le copier localement
+### Prendre l'état de la remote et le copier localement
 
 ```sh 
 git fetch 
@@ -163,7 +195,7 @@ git fetch
 
 * -p pour enlever les branches de la remote n'existant plus
 
-### merger l'etat d'une branche de la remote et la branche locale
+### Fusionner l'état d'une branche de la remote et la branche locale
 
 ```sh 
 git merge origin/master
@@ -171,7 +203,7 @@ git merge origin/master
 
 \pause 
 
-equivalent de 
+Equivalent à
 
 ```sh 
 git pull origin master
@@ -192,7 +224,14 @@ Log (File)            | 0.60   | 82.84  | 138x         |
 Update Pull of Commit | 0.90   | 2.82   | 3x           |
 Blame Line            | 1.91   | 3.04   | 1x           |
 
-### Going to deeper
+### Plus en profondeur
 
 ### Conclusion
+
+* Des questions ?
+\pause
+
+* Un endroit de référence :
+
+https://git-scm.com
 
