@@ -2,16 +2,17 @@
 %Malik Bougacha
 %Marc Schaer
 
-### What is git ?
+### Qu'est ce que git ?
 
+\pause
 \center
 \includegraphics[width=10cm]{img/logo.png}
 
-* Distributed
+* Distribuable
 \pause
-* branch aware
+* branchable
 \pause
-* code version
+* versionable
 
 ### petite histoire
 
