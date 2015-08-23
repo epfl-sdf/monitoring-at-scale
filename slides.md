@@ -8,11 +8,15 @@
 \center
 \includegraphics[width=10cm]{img/logo.png}
 
+Suivi de code 
+\pause
 * Distribuable
 \pause
 * branchable
 \pause
 * versionable
+\pause
+* rapide
 
 ### petite histoire
 
@@ -103,20 +107,53 @@ git add
 git commit
 ```
 
-### more people, more fun, more repo !
+### plus de gens, plus de rigolade, plus de repository !
 
+#### ajoutez une remote
 ```sh 
-git fetch
+git remote add origin git@gitlab.com:gcmalloc/git-talk.git
 ```
+origin: nom de la remote 
+url: emplacement de la remote
+\pause
+(http ou ssh)
 
-```sh 
-git pull
-```
+#### prendre l'etat de la remote et le copier localement
 
 ```sh 
 git fetch 
-git merge master origin/master
 ```
+
+* -p pour enlever les branches de la remote n'existant plus
+
+#### merger l'etat d'une branche de la remote et la branche locale
+
+```sh 
+git merge origin/master
+```
+
+\pause 
+
+equivalent de 
+
+```sh 
+git pull origin master
+```
+
+### Vitesse 
+
+Action                | git    | svn    | amelioration |
+-------               | ------ | ------ | ------       |
+Commit Files          | 0.64   | 2.60   | 4x           |
+Commit Images         | 1.53   | 24.70  | 16x          |
+Diff Current Diff     | 0.25   | 1.09   | 4x           |
+Diff Recent Diff      | 0.25   | 3.99   | 16x          |
+Diff TagsjDiff        | 1.17   | 83.57  | 71x          |
+Log (50)              | 0.01   | 0.38   | 31x          |
+Log (All)             | 0.52   | 169.20 | 325x         |
+Log (File)            | 0.60   | 82.84  | 138x         |
+Update Pull of Commit | 0.90   | 2.82   | 3x           |
+Blame Line            | 1.91   | 3.04   | 1x           |
 
 ### Going to deeper
 
