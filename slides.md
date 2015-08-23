@@ -2,20 +2,27 @@
 %Malik Bougacha
 %Marc Schaer
 
-### Qu'est ce que git ?
+### git ?
 
 \pause
 \center
 \includegraphics[width=10cm]{img/logo.png}
 
+### Qu'est ce que git ?
+
 Suivi de code 
+
 \pause
+
 * Distribuable
 \pause
+
 * branchable
 \pause
+
 * versionable
 \pause
+
 * rapide
 
 ### petite histoire
@@ -68,9 +75,9 @@ git add
 ```
 
 
-### more branch !
+# more branch !
 
-#### more branch !
+### Creez une branch
 
 Creons une nouvelle branche
 
@@ -78,6 +85,8 @@ Creons une nouvelle branche
 git checkout -b new_feature_for_cats
 ```
 
+
+### Commit dans une branche
 
 ```sh 
 git commit 
@@ -112,13 +121,14 @@ git add
 git commit
 ```
 
-# plus de gens, plus de rigolade, plus de repository !
+# plus de gens, plus de repo
 
-slide
 
 ### ajoutez une remote
+
 ```sh 
-git remote add origin git@gitlab.com:gcmalloc/git-talk.git
+git remote add origin  \
+git@gitlab.com:gcmalloc/git-talk.git
 ```
 origin: nom de la remote 
 url: emplacement de la remote
