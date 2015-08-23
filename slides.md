@@ -47,6 +47,11 @@ git config
 ```sh
 git init
 ```
+### Crafter un commit
+
+add 
+vs
+reset 
 
 ### Ajouter des modifications  a un commit
 
@@ -58,22 +63,29 @@ git add
 * ancien fichier
 * detection des fichiers deplace
 
-### commit
+### Enlever des modifications a un future commit
 
 ```sh
-git commit
-```
-
-the art of crafting a commit
-
-```
 git reset
 ```
 
-```
-git add
+### Regarder ce qui va etre commite
+
+```sh
+git diff --staged
 ```
 
+### Finalement faire le commit
+
+```sh
+git commit -m 'ceci est un message de commit'
+```
+
+### Rapide et efficace
+
+```sh
+git commit -am 'ceci est un message de commit'
+```
 
 # more branch !
 
@@ -89,32 +101,40 @@ git checkout -b new_feature_for_cats
 ### Commit dans une branche
 
 ```sh 
-git commit 
+git commit -m 'message de commit dans la branche new_feature_for_cats'
 ```
 
-pic ==> live
+### Merger la nouvelle branche dans master
 
 ```sh 
 git checkout master
 git merge new_feature_for_cats
 ```
 
-### more conflict !
+\pause
+
+```sh 
+git checkout master
+git merge new_feature_for_cats master
+```
+
+# more conflict !
+
+### Creer un conflict
 
 ```sh 
 git checkout new_feature_for_cats
 ```
 
-```sh 
-git merge
-```
-O NO
+creation du conflict
+
+### diagnostique du conflict
 
 ```sh 
 git status
 ```
 
-- conflict resolution
+### resolution des conflicts
 
 ```sh 
 git add
