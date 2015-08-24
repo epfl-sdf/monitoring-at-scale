@@ -180,6 +180,12 @@ git commit -m 'ceci est un message de commit'
 ```sh
 git commit -a
 ```
+. . .
+
+* Lister les derniers commits
+```sh
+git log
+```
 
 # Plus de branches !
 
@@ -351,6 +357,42 @@ Blame Line            | 1.91   | 3.04   | 1x           |
 
 
 ### Aller plus en profondeur
+
+Quelques commandes pour aller plus loin :
+
+* Annuler les modifications d'un fichier
+```sh 
+git checkout mon_fichier
+```
+
+* Changer la connexion de la branche à l'arbre
+```sh 
+git rebase
+```
+
+* Trouver un commit introduisant une erreur
+```sh 
+git bissect
+```
+
+* Modifier le commit précédent
+```sh 
+git commit --amend
+```
+
+* Appliquer un commit depuis une autre branche
+```sh 
+git cherry pick $mon_commit
+```
+
+* Annuler un commit en gardant son historique
+```sh 
+git revert $mon_commit
+```
+
+
+
+### Aller plus en profondeur (2)
 
 * https://git-scm.com
 
