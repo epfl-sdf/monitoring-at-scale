@@ -85,7 +85,9 @@ git init
 
 add vs. reset
 
-Ici faut remplir avec qqch (image ?)
+
+\center
+\includegraphics[width=10cm]{img/work_stag_commit.png}
 
 ### Gestion des modifications sur un commit
 
