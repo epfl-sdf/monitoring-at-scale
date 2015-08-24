@@ -9,7 +9,7 @@
 \center
 \includegraphics[width=10cm]{img/logo.png}
 
-### Qu'est ce que git ?
+### Qu'est-ce que git ?
 
 Système de gestion de contenu
 
@@ -49,7 +49,7 @@ Avril 2005 : créé par Linus Torvalds comme un successeur de Bitkeeper
 
 ### Pourquoi git ?
 
-* Facile d'utilisation
+* Prise en main aisée
 \pause
 
 * Création de branches simples et rapides
@@ -58,10 +58,7 @@ Avril 2005 : créé par Linus Torvalds comme un successeur de Bitkeeper
 * Efficace même avec des miliers de branches
 \pause
 
-* Fusion de code facile et claire
-\pause
-
-* Elaboration d'un commit
+* Fusion de code simplifiée et claire
 \pause
 
 * Collaboration facilitée
@@ -80,11 +77,16 @@ git config --global user.email john.doe@epfl.ch
 * E-mail
 
 
-### Démarrer un dépôt
+### Initialiser un dépôt
 
 * Création d'un dépôt local :
 ```sh
 git init
+```
+
+* Récupération d'un dépôt distant dans un dépôt local
+```sh
+git clone $URI
 ```
 
 ### Qu'est-ce qu'un commit ?
@@ -149,7 +151,7 @@ git reset
 
 * Regarder ce qui va etre "commité"
 ```sh
-git diff --staged
+git status
 ```
 
 ### Gestion des modifications sur un commit (4)
@@ -162,6 +164,9 @@ git diff --staged
 \center
 \includegraphics[width=10cm]{img/work_stag_commit.png}
 
+Note: repository est local
+
+
 ### Gestion des modifications sur un commit (6)
 
 * Finalement faire le commit
@@ -173,7 +178,7 @@ git commit -m 'ceci est un message de commit'
 
 * Tout ceci en une seule ligne - rapide et efficace
 ```sh
-git commit -am 'ceci est un message de commit'
+git commit -a
 ```
 
 # Plus de branches !
@@ -216,6 +221,12 @@ git commit -m 'message de commit dans la branche'
 
 ### Fusionner la nouvelle branche dans la branche master
 
+* Savoir où l'on se trouve
+```sh 
+git branch
+```
+
+
 * Se déplacer sur la branche master
 ```sh 
 git checkout master
@@ -234,7 +245,7 @@ git merge new_feature_for_cats
 
 ### Création d'un conflit
 
-* Modification d'un fichier sur la branche active (master)
+* Modification d'un fichier sur la branche active (master) suivi d'un commit
 
 . . .
 
@@ -244,7 +255,7 @@ git checkout new_feature_for_cats
 ```
 . . .
 
-* Modification des mêmes lignes du même fichier
+* Modification des mêmes lignes du même fichier suivi d'un commit
 
 . . .
 
@@ -280,26 +291,9 @@ git commit
 
 # Plus de personnes, plus de collaboration !
 
-### Récupérer un dépôt distant
 
-Récupération d'un dépôt distant dans un dépôt local
-```sh
-git clone $URL
-```
 ### Gestion d'une branche distante
-
-* Ajouter une branche distante en local
-```sh 
-git remote add origin  \
-git@gitlab.com:gcmalloc/git-talk.git
-```
-    * origin: nom de la remote 
-    * url: emplacement de la remote
-\pause
-(http ou ssh)
-
-### Gestion d'une branche distante (2)
-* Prendre l'état de la remote et le copier localement
+* Prendre l'état du dépôt distant et le copier localement
 ```sh 
 git fetch 
 ```
@@ -316,7 +310,7 @@ git merge origin/master
 git pull origin master
 ```
 
-### Gestion d'une branche distante (3)
+### Gestion d'une branche distante (2)
 
 * Envoyer l'état de sa branche locale sur le serveur distant
 ```sh 
@@ -326,7 +320,7 @@ git push origin master
 # Comparaison des performances - svn vs git
 
 
-### svn vs git[^1]
+### svn vs git[^2]
 
 Action                | git    | svn    | amelioration |
 -------               | ------ | ------ | ------       |
@@ -341,7 +335,7 @@ Log (File)            | 0.60   | 82.84  | 138x         |
 Update Pull of Commit | 0.90   | 2.82   | 3x           |
 Blame Line            | 1.91   | 3.04   | 1x           |
 
-[^1]: Unités en secondes
+[^2]: Unités en secondes
 
 
 # Conclusion
@@ -360,7 +354,7 @@ Blame Line            | 1.91   | 3.04   | 1x           |
 
 * https://git-scm.com
 
-* [Linus Thorvald sur git: https://www.youtube.com/watch?v=4XpnKHJAok8][Linus Thorvald sur git]
+* [Linus Torvalds sur git: https://www.youtube.com/watch?v=4XpnKHJAok8][Linus Torvalds sur git]
 
 * [gitignore.io][gitignore]
 
