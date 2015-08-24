@@ -364,33 +364,36 @@ Quelques commandes pour aller plus loin :
 ```sh 
 git checkout mon_fichier
 ```
+. . .
 
 * Changer la connexion de la branche à l'arbre
 ```sh 
 git rebase
 ```
+. . .
 
 * Trouver un commit introduisant une erreur
 ```sh 
 git bissect
 ```
+. . .
 
 * Modifier le commit précédent
 ```sh 
 git commit --amend
 ```
+. . .
 
 * Appliquer un commit depuis une autre branche
 ```sh 
 git cherry pick $mon_commit
 ```
+. . .
 
 * Annuler un commit en gardant son historique
 ```sh 
 git revert $mon_commit
 ```
-
-
 
 ### Aller plus en profondeur (2)
 
