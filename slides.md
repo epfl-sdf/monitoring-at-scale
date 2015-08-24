@@ -140,28 +140,35 @@ git add
 git ls-files
 ```
 
+
 ### Gestion des modifications sur un commit (2)
+
+\center
+\includegraphics[width=10cm]{img/work_stag_reset.png}
+
+
+### Gestion des modifications sur un commit (3)
 
 * Enlever des modifications d'un futur commit
 ```sh
 git reset
 ```
 
-### Gestion des modifications sur un commit (3)
+### Gestion des modifications sur un commit (4)
 
 * Regarder ce qui va etre "commité"
 ```sh
 git status
 ```
 
-### Gestion des modifications sur un commit (4)
+### Gestion des modifications sur un commit (5)
 
 \center
 \includegraphics[width=10cm]{img/work_stag_commit_one_arrow.png}
 
 Note: repository est local
 
-### Gestion des modifications sur un commit (5)
+### Gestion des modifications sur un commit (6)
 
 \center
 \includegraphics[width=10cm]{img/work_stag_commit.png}
@@ -169,7 +176,7 @@ Note: repository est local
 Note: repository est local
 
 
-### Gestion des modifications sur un commit (6)
+### Gestion des modifications sur un commit (7)
 
 * Finalement faire le commit
 ```sh
