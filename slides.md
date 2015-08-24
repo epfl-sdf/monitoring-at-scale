@@ -1,10 +1,12 @@
-%Git, easy branching
-%Malik Bougacha
-%Marc Schaer
+%Git, Easy Branching
+%Malik Bougacha \& Marc Schaer
+%25 août 2015
 
 # Introduction
 
-### git ?  \pause
+### git ? 
+\pause
+
 \center
 \includegraphics[width=10cm]{img/logo.png}
 
@@ -27,10 +29,11 @@ Système de gestion de contenu
 
 ### Son histoire
 
-    avril 2005 : cree par linus thorvald apres une accusation de reverse engineering de bitkeeper
-    * reecriture en C
-    * prendre cvs comme l'exemple a ne pas faire (WWCVSND: What would CVS never do ?)
-    * build for distributed workflow
+Avril 2005 : créé par Linus Thorvald après une accusation de "Reverse Engineering" de Bitkeeper
+
+* Réécriture en C
+* Prendre CVS comme l'exemple à ne pas faire (WWCVSND: What would CVS never do ?)
+* Imaginé pour un workflow distribué
 
 
 ### Pourquoi git ?
@@ -50,7 +53,7 @@ Système de gestion de contenu
 * Fusion de code facile et claire
 \pause
 
-* Gestion facile des commits (=forge your commit ?)
+* Elaboration d'un commit
 
 ### Configuration globale
 
@@ -84,58 +87,72 @@ add vs. reset
 
 Ici faut remplir avec qqch (image ?)
 
-### Ajouter des modifications à un commit
+### Gestion des modifications sur un commit
 
+* Ajouter des modifications à un commit
 ```sh
 git add
 ```
+    * Nouveau fichier
+    * Ancien fichier
+    * Détection des fichiers déplacés
 
-* Nouveau fichier
-* Ancien fichier
-* Détection des fichiers déplacés
+. . .
 
-### Enlever des modifications d'un futur commit
-
+* Enlever des modifications d'un futur commit
 ```sh
 git reset
 ```
 
-### Regarder ce qui va etre "commité"
+### Gestion des modifications sur un commit (2)
 
+* Regarder ce qui va etre "commité"
 ```sh
 git diff --staged
 ```
 
-### Finalement faire le commit
+. . .
 
+* Finalement faire le commit
 ```sh
 git commit -m 'ceci est un message de commit'
 ```
 
-### Rapide et efficace
+. . .
 
+* Tout ceci en une seule ligne - rapide et efficace
 ```sh
 git commit -am 'ceci est un message de commit'
 ```
 
 # Plus de branches !
 
-### Créez une branche
+### Pourquoi ?
 
-Créons une nouvelle branche
+Objectifs :
 
+* Séparer les branches de développement de la production
+* Une branche = une feature
+* Permet d'avoir des environnements de développement facilement
+
+
+### Gestion d'une branche
+
+* Créer une branche
 ```sh 
 git branch new_feature
 ```
+. . .
 
-### Changer de branche
-
+* Changer de branche
 ```sh 
 git checkout new_feature
 ```
 
-### Creer et changer de branche en une commande
+. . .
 
+
+* Le tout en une seule commande
 ```sh
 git checkout -b new_fast_feature
 ```
@@ -143,41 +160,50 @@ git checkout -b new_fast_feature
 ### Commit dans une branche
 
 ```sh 
-git commit -m 'message de commit dans la branche new_feature_for_cats'
+git commit -m 'message de commit dans la branche'
 ```
 
 ### Fusionner la nouvelle branche dans la branche master
 
+* Se déplacer sur la branche master
 ```sh 
 git checkout master
-git merge new_feature_for_cats
 ```
 
-\pause
-
+* Fusionner la branche new_feature_for_cat dans master
 ```sh 
-git checkout master
-git merge new_feature_for_cats master
+git merge new_feature_for_cats
+```
+    ou
+```sh 
+    git merge new_feature_for_cats master
 ```
 
 # Mais plus de conflits !
 
-### Créer un conflit
+### Création d'un conflit
 
+* Aller sur une branche
 ```sh 
 git checkout new_feature_for_cats
 ```
+. . .
 
-* Création du conflit
+* Création du conflit (Modification d'un fichier)
 
-### Diagnostique du conflit
+### Gérer un conflit
 
+* Diagnostique du conflit
 ```sh 
 git status
 ```
+. . .
 
-### Résolution des conflits
+* Résolution des conflits (à travers un éditeur de texte)
 
+. . .
+
+* Considérer les modifications et les "commiter"
 ```sh 
 git add
 git commit
@@ -186,40 +212,41 @@ git commit
 # Plus de personnes, plus de collaboration !
 
 
-### Ajouter une branche remote
+### Gestion d'une branche distante
 
+* Ajouter une branche distante
 ```sh 
 git remote add origin  \
 git@gitlab.com:gcmalloc/git-talk.git
 ```
-* origin: nom de la remote 
-* url: emplacement de la remote
+    * origin: nom de la remote 
+    * url: emplacement de la remote
 \pause
 (http ou ssh)
 
-### Prendre l'état de la remote et le copier localement
+. . .
 
+
+### Gestion d'une branche distante (2)
+* Prendre l'état de la remote et le copier localement
 ```sh 
 git fetch 
 ```
+    * -p pour enlever les branches de la remote n'existant plus
 
-* -p pour enlever les branches de la remote n'existant plus
-
-### Fusionner l'état d'une branche de la remote et la branche locale
-
+* Fusionner l'état d'une branche de la remote et la branche locale
 ```sh 
 git merge origin/master
 ```
+    * Equivalent à
+    ```sh 
+    git pull origin master
+    ```
 
-\pause 
+# Comparaison des performances - svn vs git
 
-Equivalent à
 
-```sh 
-git pull origin master
-```
-
-### Vitesse 
+### svn vs git[^1]
 
 Action                | git    | svn    | amelioration |
 -------               | ------ | ------ | ------       |
@@ -234,15 +261,29 @@ Log (File)            | 0.60   | 82.84  | 138x         |
 Update Pull of Commit | 0.90   | 2.82   | 3x           |
 Blame Line            | 1.91   | 3.04   | 1x           |
 
+[^1]: Unités en secondes
+
+
+# Conclusion
+
 
 ### Conclusion
 
-* Des questions ?
-\pause
+* Rapide
+* Distribué
+* Résolution de conflits simple
+* Collaboration facilitée
+* Travail hors-ligne
 
-### Allew plus en profondeur
 
-https://git-scm.com
+### Aller plus en profondeur
 
-linus thorvald on git: https://www.youtube.com/watch?v=4XpnKHJAok8
+* https://git-scm.com
+
+* [Linus Thorvald sur git: https://www.youtube.com/watch?v=4XpnKHJAok8][Linus Thorvald sur git]
+
+* [gitignore.io][gitignore]
+
+[Linus Thorvald sur git]: https://www.youtube.com/watch?v=4XpnKHJAok8
+[gitignore]: http://gitignore.io
 
