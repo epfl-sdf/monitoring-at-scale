@@ -107,7 +107,7 @@ Un commit contient:
 
 ### Gestion des modifications sur un commit
 
-* Ajouter des modifications à un commit
+* Ajouter des modifications à un futur commit
 ```sh
 git add
 ```
