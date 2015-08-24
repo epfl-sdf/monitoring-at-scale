@@ -10,7 +10,7 @@
 
 ### Qu'est ce que git ?
 
-Système de gestion de code
+Système de gestion de contenu
 
 \pause
 
@@ -125,13 +125,19 @@ git commit -am 'ceci est un message de commit'
 Créons une nouvelle branche
 
 ```sh 
-git branch new_feature_for_cats
+git branch new_feature
 ```
 
 ### Changer de branche
 
 ```sh 
-git checkout new_feature_for_cats
+git checkout new_feature
+```
+
+### Creer et changer de branche en une commande
+
+```sh
+git checkout -b new_fast_feature
 ```
 
 ### Commit dans une branche
@@ -228,14 +234,15 @@ Log (File)            | 0.60   | 82.84  | 138x         |
 Update Pull of Commit | 0.90   | 2.82   | 3x           |
 Blame Line            | 1.91   | 3.04   | 1x           |
 
-### Plus en profondeur
 
 ### Conclusion
 
 * Des questions ?
 \pause
 
-* Un endroit de référence :
+### Allew plus en profondeur
 
 https://git-scm.com
+
+linus thorvald on git: https://www.youtube.com/watch?v=4XpnKHJAok8
 
