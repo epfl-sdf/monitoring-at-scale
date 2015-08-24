@@ -159,6 +159,8 @@ git status
 \center
 \includegraphics[width=10cm]{img/work_stag_commit_one_arrow.png}
 
+Note: repository est local
+
 ### Gestion des modifications sur un commit (5)
 
 \center
