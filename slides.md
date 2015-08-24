@@ -82,7 +82,9 @@ git init
 
 add vs. reset
 
-Ici faut remplir avec qqch (image ?)
+
+\center
+\includegraphics[width=10cm]{img/work_stag_commit.png}
 
 ### Ajouter des modifications à un commit
 
