@@ -5,7 +5,6 @@
 # Introduction
 
 ### git ? 
-\pause
 
 \center
 \includegraphics[width=10cm]{img/logo.png}
@@ -22,17 +21,29 @@ Système de gestion de contenu
 * Distribué
 \pause
 
-* Création de branches
+* Gestion facilitée de branches
 \pause
 
 * Efficace
 
 ### Son histoire
 
-Avril 2005 : créé par Linus Thorvald après une accusation de "Reverse Engineering" de Bitkeeper
+Avril 2005 : créé par Linus Torvalds comme un successeur de Bitkeeper
 
-* Réécriture en C
+. . .
+
+* Initialement en Bash
+
+. . .
+
+* Réécriture en C 
+
+. . .
+
 * Prendre CVS comme l'exemple à ne pas faire (WWCVSND: What would CVS never do ?)
+
+. . .
+
 * Imaginé pour un workflow distribué
 
 
@@ -44,50 +55,55 @@ Avril 2005 : créé par Linus Thorvald après une accusation de "Reverse Enginee
 * Création de branches simples et rapides
 \pause
 
-* Collaboration facilitée
-\pause
-
-* Efficaces même avec des miliers de branches
+* Efficace même avec des miliers de branches
 \pause
 
 * Fusion de code facile et claire
 \pause
 
 * Elaboration d'un commit
+\pause
+
+* Collaboration facilitée
 
 ### Configuration globale
 
-* Travail en local...
-\pause
-
-* ... mais collaboration...
-\pause
-
-* ... signifie identification !
-\pause
-
+Configuration d'un utilisateur
 ```
-git config
+git config --global user.name John Doe
+git config --global user.email john.doe@epfl.ch
 ```
+. . .
 
 * Nom d'utilisateur
 
 * E-mail
 
+
 ### Démarrer un dépôt
 
-Création d'un dépôt local :
-
+* Création d'un dépôt local :
 ```sh
 git init
 ```
-### Modeler un commit
 
-add vs. reset
+### Qu'est-ce qu'un commit ?
 
+Un commit contient:
 
-\center
-\includegraphics[width=10cm]{img/work_stag_commit.png}
+* Un auteur (nom d'utilisateur, email)
+
+. . .
+
+* Une date
+
+. . .
+
+* Un snapshot de l'état actuel du dépôt
+
+. . .
+
+* Un commentaire indiquant le contenu du commit
 
 ### Gestion des modifications sur un commit
 
@@ -101,12 +117,19 @@ git add
 
 . . .
 
+* Lister les fichiers suivis par git
+```sh
+git ls-files
+```
+
+### Gestion des modifications sur un commit (2)
+
 * Enlever des modifications d'un futur commit
 ```sh
 git reset
 ```
 
-### Gestion des modifications sur un commit (2)
+### Gestion des modifications sur un commit (3)
 
 * Regarder ce qui va etre "commité"
 ```sh
@@ -127,14 +150,20 @@ git commit -m 'ceci est un message de commit'
 git commit -am 'ceci est un message de commit'
 ```
 
+### Modeler un commit
+
+\center
+\includegraphics[width=10cm]{img/work_stag_commit.png}
+
+
 # Plus de branches !
 
 ### Pourquoi ?
 
 Objectifs :
 
-* Séparer les branches de développement de la production
-* Une branche = une feature
+* Séparer la production du développement
+* Une branche = une feature/bug fix
 * Permet d'avoir des environnements de développement facilement
 
 
@@ -185,13 +214,31 @@ git merge new_feature_for_cats
 
 ### Création d'un conflit
 
-* Aller sur une branche
+* Modification d'un fichier sur la branche active (master)
+
+. . .
+
+* Se déplacer sur une branche
 ```sh 
 git checkout new_feature_for_cats
 ```
 . . .
 
-* Création du conflit (Modification d'un fichier)
+* Modification des mêmes lignes du même fichier
+
+. . .
+
+* Retour sur la branche master
+```sh 
+git checkout master
+```
+
+. . .
+
+* Création d'un conflit
+```sh 
+git merge new_feature_for_cats
+```
 
 ### Gérer un conflit
 
@@ -213,10 +260,15 @@ git commit
 
 # Plus de personnes, plus de collaboration !
 
+### Récupérer un dépôt distant
 
+Récupération d'un dépôt distant dans un dépôt local
+```sh
+git clone $URL
+```
 ### Gestion d'une branche distante
 
-* Ajouter une branche distante
+* Ajouter une branche distante en local
 ```sh 
 git remote add origin  \
 git@gitlab.com:gcmalloc/git-talk.git
@@ -226,24 +278,30 @@ git@gitlab.com:gcmalloc/git-talk.git
 \pause
 (http ou ssh)
 
-. . .
-
-
 ### Gestion d'une branche distante (2)
 * Prendre l'état de la remote et le copier localement
 ```sh 
 git fetch 
 ```
-    * -p pour enlever les branches de la remote n'existant plus
+    * -p pour enlever les branches locale qui n'existent plus sur le serveur distant
 
 * Fusionner l'état d'une branche de la remote et la branche locale
 ```sh 
 git merge origin/master
 ```
-    * Equivalent à
-    ```sh 
-    git pull origin master
-    ```
+. . .
+
+* En plus court :
+```sh 
+git pull origin master
+```
+
+### Gestion d'une branche distante (3)
+
+* Envoyer l'état de sa branche locale sur le serveur distant
+```sh 
+git push origin master
+```
 
 # Comparaison des performances - svn vs git
 
@@ -286,6 +344,8 @@ Blame Line            | 1.91   | 3.04   | 1x           |
 
 * [gitignore.io][gitignore]
 
-[Linus Thorvald sur git]: https://www.youtube.com/watch?v=4XpnKHJAok8
+* tig / gitg
+
+[Linus Torvalds sur git]: https://www.youtube.com/watch?v=4XpnKHJAok8
 [gitignore]: http://gitignore.io
 
