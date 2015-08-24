@@ -27,7 +27,11 @@ Système de gestion de code
 
 ### Son histoire
 
-* TODO : petite recherche rapide sur l'historique des systèmes de gestion de code
+    avril 2005 : cree par linus thorvald apres une accusation de reverse engineering de bitkeeper
+    * reecriture en C
+    * prendre cvs comme l'exemple a ne pas faire (WWCVSND: What would CVS never do ?)
+    * build for distributed workflow
+
 
 ### Pourquoi git ?
 
