@@ -105,6 +105,22 @@ Un commit contient:
 
 * Un commentaire indiquant le contenu du commit
 
+### Gestion des fichiers dans git
+
+\center
+\includegraphics[width=10cm]{img/work_no_array.png}
+
+### Gestion des fichiers dans git (2)
+
+\center
+\includegraphics[width=10cm]{img/work_stag_no_array.png}
+
+### Gestion des fichiers dans git (3)
+
+\center
+\includegraphics[width=10cm]{img/work_stag.png}
+
+
 ### Gestion des modifications sur un commit
 
 * Ajouter des modifications à un futur commit
@@ -136,7 +152,17 @@ git reset
 git diff --staged
 ```
 
-. . .
+### Gestion des modifications sur un commit (4)
+
+\center
+\includegraphics[width=10cm]{img/work_stag_commit_one_arrow.png}
+
+### Gestion des modifications sur un commit (5)
+
+\center
+\includegraphics[width=10cm]{img/work_stag_commit.png}
+
+### Gestion des modifications sur un commit (6)
 
 * Finalement faire le commit
 ```sh
@@ -149,21 +175,6 @@ git commit -m 'ceci est un message de commit'
 ```sh
 git commit -am 'ceci est un message de commit'
 ```
-
-### Modeler un commit
-
-\center
-\includegraphics[width=10cm]{img/work_stag_commit.png}
-
-### Modeler un commit
-
-\center
-\includegraphics[width=10cm]{img/work_stag.png}
-
-### Modeler un commit
-
-\center
-\includegraphics[width=10cm]{img/work_stag_commit_no_arrow.png}
 
 # Plus de branches !
 
