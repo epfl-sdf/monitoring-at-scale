@@ -155,6 +155,11 @@ git commit -am 'ceci est un message de commit'
 \center
 \includegraphics[width=10cm]{img/work_stag_commit.png}
 
+### Modeler un commit
+
+\center
+\includegraphics[width=10cm]{img/work_stag.png}
+
 
 # Plus de branches !
 
