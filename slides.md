@@ -55,7 +55,7 @@ Avril 2005 : créé par Linus Torvalds comme un successeur de Bitkeeper
 * Création de branches simples et rapides
 \pause
 
-* Efficace même avec des miliers de branches
+* Efficace même avec des milliers de branches
 \pause
 
 * Fusion de code simplifiée et claire
