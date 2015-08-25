@@ -44,7 +44,7 @@ https://collectd.org/
 
 \pause
 
-* Peut exécuter des scripts écrit par l'utilisateur pour récupérer des données.
+* Peut exécuter des scripts écrits par l'utilisateur pour récupérer des données.
 
 \pause
 
