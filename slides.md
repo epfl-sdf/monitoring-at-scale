@@ -275,11 +275,11 @@ node:
 
 ### Conclusion
 
-* Collectd : https://collectd.org/
-* Collectd table des plugins : https://collectd.org/wiki/index.php/Table_of_Plugins
-* InfluxDB : https://influxdb.com/
-* Grafana : http://grafana.org
-* Logstash : https://www.elastic.co/guide/en/logstash/current/index.html
-* Logstash-forwarder : https://github.com/elastic/logstash-forwarder
-* Elasticsearch : https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
-* Kibana : https://www.elastic.co/guide/en/kibana/current/index.html
+Collectd : https://collectd.org/ \
+Collectd table des plugins : https://collectd.org/wiki/index.php/Table_of_Plugins \
+InfluxDB : https://influxdb.com/ \
+Grafana : http://grafana.org \
+Logstash : https://www.elastic.co/guide/en/logstash/current/index.html \
+Logstash-forwarder : https://github.com/elastic/logstash-forwarder \
+Elasticsearch : https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html \
+Kibana : https://www.elastic.co/guide/en/kibana/current/index.html \
