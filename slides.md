@@ -35,9 +35,6 @@
 
 * Plusieurs sorties : rrd, http, carbon, ... .
 
-\pause
-https://collectd.org/
-
 ### Collectd
 
 * Installation facile : le package est dans les dépôts de beaucoup de distributions.
@@ -64,7 +61,6 @@ https://collectd.org/wiki/index.php/Table_of_Plugins
 * Utilise un système de série temporelle.
 
 \pause
-https://influxdb.com/
 
 ### InfluxDB
 
@@ -93,9 +89,6 @@ https://influxdb.com/
 \pause
 
 * Peux faire des requêtes à Elasticsearch pour corréler les métriques et les logs.
-
-\pause
-http://grafana.org
 
 ### Comment grandir ?
 
@@ -135,9 +128,6 @@ http://grafana.org
 \pause
 
 * Envoie les logs sur la sortie désirée.
-
-\pause
-https://www.elastic.co/guide/en/logstash/current/index.html
 
 ### Logsatsh : traitement des logs
 
@@ -194,9 +184,6 @@ output {
 
 * Prends des fichiers de log en entrée (ou stdin) et envoie les logs sur le réseau via TLS.
 
-\pause
-https://github.com/elastic/logstash-forwarder
-
 ### Logstash-forwarder : configuration
 
 Logstash :
@@ -242,9 +229,6 @@ Logstash-forwarder :
 
 * Gère le sharding et la réplication.
 
-\pause
-https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
-
 ### Elasticsearch : sharding et réplication
 
 ```ruby
@@ -289,4 +273,13 @@ node:
 
 * Dashboard pour elasticsearch : interface web en javascript.
 
-https://www.elastic.co/guide/en/kibana/current/index.html
+### Conclusion
+
+* Collectd : https://collectd.org/
+* Collectd table des plugins : https://collectd.org/wiki/index.php/Table_of_Plugins
+* InfluxDB : https://influxdb.com/
+* Grafana : http://grafana.org
+* Logstash : https://www.elastic.co/guide/en/logstash/current/index.html
+* Logstash-forwarder : https://github.com/elastic/logstash-forwarder
+* Elasticsearch : https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+* Kibana : https://www.elastic.co/guide/en/kibana/current/index.html
