@@ -14,7 +14,7 @@
 
 \pause
 
-* On veut monitorer cette machine sans faire intervenir quelqu'un sur le serveur de monitoring.
+* But : monitorer cette machine sans faire intervenir quelqu'un sur le serveur de monitoring.
 
 # Monitoring des métriques
 
