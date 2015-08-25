@@ -40,7 +40,7 @@ https://collectd.org/
 
 ### Collectd
 
-* Installation facile : le package est dans les repository de beaucoup de distributions.
+* Installation facile : le package est dans les dépôts de beaucoup de distributions.
 
 \pause
 
