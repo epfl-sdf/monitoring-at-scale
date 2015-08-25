@@ -6,7 +6,7 @@
 
 ### Quel est le problème ?
 
-* Architecture de cloud dans laquelle on veut monitorer les machines.
+* Architecture de cloud.
 
 \pause
 
