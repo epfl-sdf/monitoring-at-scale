@@ -72,7 +72,7 @@ https://influxdb.com/
 
 \pause
 
-* Accepte différentes entrées : carbon, http.
+* Accepte différentes entrées : carbon, http, ... .
 
 \pause
 
@@ -155,6 +155,17 @@ https://www.elastic.co/guide/en/logstash/current/index.html
 
 * Beaucoup de plugins d'entrées intégrés : stdout, udp, tcp, elasticsearch, kafka, email, ... .
 
+### Logstash : exemple Grok
+
+```ruby
+grok {
+  match => { "message" => "(?<syslog_timestamp>%{YEAR}[/-]\
+  %{MONTHNUM}[/-]%{MONTHDAY}[ ]%{TIME})\
+  %{GREEDYDATA:logmessage}" }
+  add_field => [ "received_at", "%{@timestamp}" ]
+}
+```
+
 ### Logstash : configuration
 
 ```ruby
@@ -230,6 +241,9 @@ Logstash-forwarder :
 \pause
 
 * Gère le sharding et la réplication.
+
+\pause
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
 
 ### Elasticsearch : sharding et réplication
 
