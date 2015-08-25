@@ -1,419 +1,278 @@
-%Git, Easy Branching
-%Malik Bougacha \& Marc Schaer
-%25 août 2015
+%Monitoring at scale
+%Gil Brechbühler
+%26 août 2015
 
-# Introduction
+# Monitoring dans le cloud
 
-### git ? 
+### Quel est le problème ?
+
+* Architecture de cloud dans laquelle on veut monitorer les machines.
+
+\pause
+
+* Une nouvelle machine (virtuelle) peut être créée à tout moment.
+
+\pause
+
+* On veut monitorer cette machine sans faire intervenir quelqu'un sur le serveur de monitoring.
+
+# Monitoring des métriques
+
+### Schéma
 
 \center
-\includegraphics[width=10cm]{img/logo.png}
+\includegraphics[width=12cm]{img/stats_monitoring.png}
 
-### Qu'est-ce que git ?
+### Collectd
 
-Système de gestion de contenu
+* Daemon écrit en C.
 
 \pause
 
-* Gestion de version
+* Plusieurs entrées : /proc, json, SNMP, ... .
+
 \pause
 
-* Distribué
+* Plusieurs sorties : rrd, http, carbon, ... .
+
+\pause
+https://collectd.org/
+
+### Collectd
+
+* Installation facile : le package est dans les repository de beaucoup de distributions.
+
 \pause
 
-* Gestion facilitée de branches
+* Peut exécuter des scripts écrit par l'utilisateur pour récupérer des données.
+
 \pause
 
-* Efficace
+* Extensible avec des plugins (C, Python) :
+https://collectd.org/wiki/index.php/Table_of_Plugins
 
-### Son histoire
+### InfluxDB
 
-Avril 2005 : créé par Linus Torvalds comme un successeur de Bitkeeper
+* Base de données spécialisée pour le stockage de métriques.
 
-. . .
-
-* Initialement en Bash
-
-. . .
-
-* Réécriture en C 
-
-. . .
-
-* Prendre CVS comme l'exemple à ne pas faire (WWCVSND: What would CVS never do ?)
-
-. . .
-
-* Imaginé pour un workflow distribué
-
-
-### Pourquoi git ?
-
-* Prise en main aisée
 \pause
 
-* Création de branches simples et rapides
+* RocksDB (key-value store) en backend.
+
 \pause
 
-* Efficace même avec des milliers de branches
+* Utilise un système de série temporelle.
+
+\pause
+https://influxdb.com/
+
+### InfluxDB
+
+* Installation facile : un simple exécutable dans une archive à décompresser.
+
 \pause
 
-* Fusion de code simplifiée et claire
+* Accepte différentes entrées : carbon, http.
+
 \pause
 
-* Collaboration facilitée
+* Aucune configuration manuelle à l'ajout d'un client.
 
-### Configuration globale
+### Grafana
 
-Configuration d'un utilisateur
-```
-git config --global user.name John Doe
-git config --global user.email john.doe@epfl.ch
-```
-. . .
+* Dashboard pour visualiser les métriques : interface web en javascript.
 
-* Nom d'utilisateur
+\pause
 
-* E-mail
+* Connexion à InfluxDB supportée : utilise l'API HTTP d'InfluxDB pour faire les requêtes.
 
+\pause
 
-### Initialiser un dépôt
+* Simplifie grandement l'écriture de requêtes à InfluxDB.
 
-* Création d'un dépôt local :
-```sh
-git init
-```
+\pause
 
-* Récupération d'un dépôt distant dans un dépôt local
-```sh
-git clone $URI
-```
+* Peux faire des requêtes à Elasticsearch pour corréler les métriques et les logs.
 
-### Qu'est-ce qu'un commit ?
+\pause
+http://grafana.org
 
-Un commit contient:
+### Comment grandir ?
 
-* Un auteur (nom d'utilisateur, email)
+* Pour monitorer une nouvelle machine, il suffit de configurer Collectd sur cette machine.
 
-. . .
+\pause
 
-* Une date
+* Configuration décentralisée.
 
-. . .
+\pause
 
-* Un snapshot de l'état actuel du dépôt
+* InfluxDB est scalable et gère la réplication.
 
-. . .
+\pause
 
-* Un commentaire indiquant le contenu du commit
+* Des instances Grafana indépendantes peuvent facilement être créées.
 
-### Gestion des fichiers dans git
+# Centralisation des logs
+
+### Schéma
 
 \center
-\includegraphics[width=10cm]{img/work_no_array.png}
+\includegraphics[width=12cm]{img/logs_monitoring.png}
 
-### Gestion des fichiers dans git (2)
+### Logstash
 
-\center
-\includegraphics[width=10cm]{img/work_stag_no_array.png}
+* Ecrit en ruby, tourne sur JRuby.
 
-### Gestion des fichiers dans git (3)
+\pause
 
-\center
-\includegraphics[width=10cm]{img/work_stag.png}
+* Prends des logs en entrée.
 
+\pause
 
-### Gestion des modifications sur un commit
+* Filtre et traite les logs.
 
-* Ajouter des modifications à un futur commit
-```sh
-git add
-```
-    * Nouveau fichier
-    * Ancien fichier
-    * Détection des fichiers déplacés
+\pause
 
-. . .
+* Envoie les logs sur la sortie désirée.
 
-* Lister les fichiers suivis par git
-```sh
-git ls-files
-```
+\pause
+https://www.elastic.co/guide/en/logstash/current/index.html
 
+### Logsatsh : traitement des logs
 
-### Gestion des modifications sur un commit (2)
+* Fonctionne avec un système de plugins.
 
-\center
-\includegraphics[width=10cm]{img/work_stag_reset.png}
+\pause
 
+* Grok : Système d'expressions régulières puissant pour parser les logs.
 
-### Gestion des modifications sur un commit (3)
+\pause
 
-* Enlever des modifications d'un futur commit
-```sh
-git reset
-```
+* Beaucoup de plugins d'entrées intégrés : file, syslog, tcp, udp, http, lumberjack, twitter, ... .
 
-### Gestion des modifications sur un commit (4)
+\pause
 
-* Regarder ce qui va etre "commité"
-```sh
-git status
-```
+* Beaucoup de plugins d'entrées intégrés : stdout, udp, tcp, elasticsearch, kafka, email, ... .
 
-### Gestion des modifications sur un commit (5)
+### Logstash : configuration
 
-\center
-\includegraphics[width=10cm]{img/work_stag_commit_one_arrow.png}
-
-Note: repository est local
-
-### Gestion des modifications sur un commit (6)
-
-\center
-\includegraphics[width=10cm]{img/work_stag_commit.png}
-
-Note: repository est local
-
-
-### Gestion des modifications sur un commit (7)
-
-* Finalement faire le commit
-```sh
-git commit -m 'ceci est un message de commit'
+```ruby
+input {
+    file {
+        path => "apache_log.log"
+        start_position => beginning
+    }
+    stdin{}
+}
+filter {
+    grok {
+        match => { "message" => "%{COMBINEDAPACHELOG}"}
+    }
+}
+output {
+    stdout {codec => rubydebug}
+}
 ```
 
-. . .
+### Logstash-forwarder
 
-* Tout ceci en une seule ligne - rapide et efficace
-```sh
-git commit -a
-```
-. . .
+* Beaucoup plus léger que logstash. Ecrit en Go.
 
-* Lister les derniers commits
-```sh
-git log
-```
+\pause
 
-# Plus de branches !
+* Prends des fichiers de log en entrée (ou stdin) et envoie les logs sur le réseau via TLS.
 
-### Pourquoi ?
+\pause
+https://github.com/elastic/logstash-forwarder
 
-Objectifs :
+### Logstash-forwarder : configuration
 
-* Séparer la production du développement
-* Une branche = une feature/bug fix
-* Permet d'avoir des environnements de développement facilement
+Logstash :
 
+```ruby
+input {
+  lumberjack {
+    # The port to listen on
+    port => 5514
 
-### Gestion d'une branche
-
-* Créer une branche
-```sh 
-git branch new_feature
-```
-. . .
-
-* Changer de branche
-```sh 
-git checkout new_feature
+    # The paths to your ssl cert and key
+    ssl_key => "/path/to/key.pem"
+    ssl_certificate => "/path/to/cert.pem"
+  }
+}
 ```
 
-. . .
+### Logstash-forwarder : configuration
 
+Logstash-forwarder :
 
-* Le tout en une seule commande
-```sh
-git checkout -b new_fast_feature
+```ruby
+{
+  "network": {
+    "servers": [ "logstash-instance-1:5514",
+      "logstash-server-2:5514"],
+    "ssl ca": "/path/to/ca.pem",
+    "timeout": 10
+  },
+  "files": [
+    {
+      "paths": [ "/var/log/*" ],
+      "fields": { "type": "syslog" }
+  ]
+}
 ```
 
-### Commit dans une branche
+### Elasticsearch
 
-```sh 
-git commit -m 'message de commit dans la branche'
+* Base de donnée se basant sur des indexes.
+
+\pause
+
+* Gère le sharding et la réplication.
+
+### Elasticsearch : sharding et réplication
+
+```ruby
+{
+    "template" : "logstash-*",
+    "settings" : {
+        "number_of_shards" : 4,
+        "number_of_replicas" : 2
+    }
+}
 ```
 
-### Fusionner la nouvelle branche dans la branche master
+### Elasticsearch : clustering
 
-* Savoir où l'on se trouve
-```sh 
-git branch
+* Construction d'un cluster facile.
+
+\pause
+
+* Ajout d'un noeud au cluster facile.
+
+### Elasticsearch : configuration
+
+```ruby
+cluster:
+  name: presentation-cluster
+discovery:
+  zen:
+    ping:
+      multicast:
+        enabled: false
+      unicast:
+        hosts:
+          - elasticsearch-instance-1:9300
+          - elasticsearch-instance-2:9300
+network:
+  host: 0.0.0.0
+node:
+  name: elasticsearch-instance-3
 ```
 
+### Kibana
 
-* Se déplacer sur la branche master
-```sh 
-git checkout master
-```
+* Dashboard pour elasticsearch : interface web en javascript.
 
-* Fusionner la branche new_feature_for_cat dans master
-```sh 
-git merge new_feature_for_cats
-```
-    ou
-```sh 
-    git merge new_feature_for_cats master
-```
-
-# Mais plus de conflits !
-
-### Création d'un conflit
-
-* Modification d'un fichier sur la branche active (master) suivi d'un commit
-
-. . .
-
-* Se déplacer sur une branche
-```sh 
-git checkout new_feature_for_cats
-```
-. . .
-
-* Modification des mêmes lignes du même fichier suivi d'un commit
-
-. . .
-
-* Retour sur la branche master
-```sh 
-git checkout master
-```
-
-. . .
-
-* Création d'un conflit
-```sh 
-git merge new_feature_for_cats
-```
-
-### Gérer un conflit
-
-* Diagnostique du conflit
-```sh 
-git status
-```
-. . .
-
-* Résolution des conflits (à travers un éditeur de texte)
-
-. . .
-
-* Considérer les modifications et les "commiter"
-```sh 
-git add
-git commit
-```
-
-# Plus de personnes, plus de collaboration !
-
-
-### Gestion d'une branche distante
-* Prendre l'état du dépôt distant et le copier localement
-```sh 
-git fetch 
-```
-    * -p pour enlever les branches locale qui n'existent plus sur le serveur distant
-
-* Fusionner l'état d'une branche de la remote et la branche locale
-```sh 
-git merge origin/master
-```
-. . .
-
-* En plus court :
-```sh 
-git pull origin master
-```
-
-### Gestion d'une branche distante (2)
-
-* Envoyer l'état de sa branche locale sur le serveur distant
-```sh 
-git push origin master
-```
-
-# Comparaison des performances - svn vs git
-
-
-### svn vs git[^2]
-
-Action                | git    | svn    | amelioration |
--------               | ------ | ------ | ------       |
-Commit Files          | 0.64   | 2.60   | 4x           |
-Commit Images         | 1.53   | 24.70  | 16x          |
-Diff Current Diff     | 0.25   | 1.09   | 4x           |
-Diff Recent Diff      | 0.25   | 3.99   | 16x          |
-Diff TagsjDiff        | 1.17   | 83.57  | 71x          |
-Log (50)              | 0.01   | 0.38   | 31x          |
-Log (All)             | 0.52   | 169.20 | 325x         |
-Log (File)            | 0.60   | 82.84  | 138x         |
-Update Pull of Commit | 0.90   | 2.82   | 3x           |
-Blame Line            | 1.91   | 3.04   | 1x           |
-
-[^2]: Unités en secondes
-
-
-# Conclusion
-
-
-### Conclusion
-
-* Rapide
-* Distribué
-* Résolution de conflits simple
-* Collaboration facilitée
-* Travail hors-ligne
-
-
-### Aller plus en profondeur
-
-Quelques commandes pour aller plus loin :
-
-* Annuler les modifications d'un fichier
-```sh 
-git checkout mon_fichier
-```
-. . .
-
-* Changer la connexion de la branche à l'arbre
-```sh 
-git rebase
-```
-. . .
-
-* Trouver un commit introduisant une erreur
-```sh 
-git bissect
-```
-. . .
-
-* Modifier le commit précédent
-```sh 
-git commit --amend
-```
-. . .
-
-* Appliquer un commit depuis une autre branche
-```sh 
-git cherry pick $mon_commit
-```
-. . .
-
-* Annuler un commit en gardant son historique
-```sh 
-git revert $mon_commit
-```
-
-### Aller plus en profondeur (2)
-
-* https://git-scm.com
-
-* [Linus Torvalds sur git: https://www.youtube.com/watch?v=4XpnKHJAok8][Linus Torvalds sur git]
-
-* [gitignore.io][gitignore]
-
-* tig / gitg
-
-[Linus Torvalds sur git]: https://www.youtube.com/watch?v=4XpnKHJAok8
-[gitignore]: http://gitignore.io
-
+https://www.elastic.co/guide/en/kibana/current/index.html
