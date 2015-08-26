@@ -2,19 +2,19 @@
 %Gil Brechbühler
 %26 août 2015
 
-# Monitoring dans le cloud
+# Monitoring d'évènements
 
 ### Quel est le problème ?
 
-* Architecture de cloud.
+* On veut récupérer et centraliser les évènements de différentes machines.
 
 \pause
 
-* Une nouvelle machine (virtuelle) peut être créée à tout moment.
+* Sur une architecture dans laquelle des serveurs peuvent être créés et arrêtés à la volée.
 
 \pause
 
-* But : monitorer cette machine sans faire intervenir quelqu'un sur le serveur de monitoring.
+* But : automatiser le monitoring de ces serveurs.
 
 # Monitoring des métriques
 
@@ -129,13 +129,13 @@ https://collectd.org/wiki/index.php/Table_of_Plugins
 
 * Envoie les logs sur la sortie désirée.
 
-### Logsatsh : traitement des logs
+### Logstash : traitement des logs
 
 * Fonctionne avec un système de plugins.
 
 \pause
 
-* Grok : Système d'expressions régulières puissant pour parser les logs.
+* Grok (filtre) : système d'expressions régulières puissant pour parser les logs.
 
 \pause
 
@@ -143,16 +143,30 @@ https://collectd.org/wiki/index.php/Table_of_Plugins
 
 \pause
 
-* Beaucoup de plugins d'entrées intégrés : stdout, udp, tcp, elasticsearch, kafka, email, ... .
+* Beaucoup de plugins de sorties intégrés : stdout, udp, tcp, elasticsearch, kafka, email, ... .
+
+### Logstash : workflow
+
+* Entrées : stdin, file, udp, tcp, syslog, .... .
+
+\pause
+
+* Filtres : anonymize, date, drop, mutate, grok, ... .
+
+\pause
+
+* Sorties : stdout, file, udp, tcp, elasticsearch, ... .
 
 ### Logstash : exemple Grok
 
 ```ruby
-grok {
-  match => { "message" => "(?<syslog_timestamp>%{YEAR}[/-]\
-  %{MONTHNUM}[/-]%{MONTHDAY}[ ]%{TIME})\
-  %{GREEDYDATA:logmessage}" }
-  add_field => [ "received_at", "%{@timestamp}" ]
+filter {
+  grok {
+    match => { "message" => "(?<syslog_timestamp>%{YEAR}[/-]\
+    %{MONTHNUM}[/-]%{MONTHDAY}[ ]%{TIME})\
+    %{GREEDYDATA:logmessage}" }
+    add_field => [ "received_at", "%{@timestamp}" ]
+  }
 }
 ```
 
